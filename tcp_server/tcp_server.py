@@ -19,7 +19,7 @@ def Main():
         data = c.recv(1024)
         if not data:
             break
-        print("from connected user: "+str*(data))
+        print("from connected user: "+str(data))
         data = str(data).upper()
         print("sending: "+str(data))
         c.send(data)

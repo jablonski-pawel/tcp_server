@@ -6,14 +6,20 @@ Created on 07.11.2016
 import socket
 
 def Main():
-    host = '127.0.0.1'
-    port = 5000
+    #host = 'www.google.com'
+    port = 5000 #80
     
-    s=socket.socket()
-    s.connect((host, port))
+    s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    #ip = socket.gethostbyname(host)
+    ip = '127.0.0.1'
+    address = (ip, port)
+    s.connect(address)
+    print(ip, address)
     
     message = raw_input("-> ")
     while message != 'q':
+        if(message == 'g'):
+            message = "GET / HTTP/1.1\r\nHost: google.com\r\n\r\n"
         s.send(message)
         data = s.recv(1024)
         print("Recived from server: "+str(data))
